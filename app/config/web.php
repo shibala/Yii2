@@ -38,7 +38,8 @@ $config = [
         ],
         'rbac' => \app\components\RbacComponent::class,
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\MemCached',
+            'useMemcached' => true
         ],
         'user' => [
             'identityClass' => 'app\models\Users',

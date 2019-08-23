@@ -51,9 +51,6 @@ class Activity extends ActivityBase
             ['date_end', 'date', 'format' => 'php: Y-m-d'],
             ['description', 'string'],
             [['title', 'date_start'], 'required'],
-            ['is_blocked', 'boolean'],
-            ['is_repeat', 'boolean'],
-            ['confirmed', 'boolean'],
             ['email', 'email'],
             [['image'], 'file', 'extensions' => 'png, jpg'/*, 'maxFiles' => 4*/]
         ], parent::rules());
