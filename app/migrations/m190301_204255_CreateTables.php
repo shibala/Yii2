@@ -12,7 +12,7 @@ class m190301_204255_CreateTables extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('user', [
+        $this->createTable('users', [
            'id' => $this->primaryKey(),
            'email' => $this->string(150)->notNull(),
            'password_hash' => $this->string(300)->notNull(),
@@ -25,8 +25,8 @@ class m190301_204255_CreateTables extends Migration
             'id' => $this->primaryKey(),
             'title' => $this->string(150)->notNull(),
             'description' => $this->text(),
-            'date_start' => $this->dateTime()->notNull(),
-            'date_end' => $this->dateTime(),
+            'date_start' => $this->date()->notNull(),
+            'date_end' => $this->date(),
             'user_notification' => $this->boolean()->notNull()->defaultValue(0),
             'is_blocked' => $this->boolean()->notNull()->defaultValue(0),
             'is_repeat' => $this->boolean()->notNull()->defaultValue(0),
@@ -39,7 +39,7 @@ class m190301_204255_CreateTables extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('user');
+        $this->dropTable('users');
         $this->dropTable('activity');
     }
 

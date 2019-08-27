@@ -12,7 +12,7 @@ class m190301_212548_inserts extends Migration
      */
     public function safeUp()
     {
-        $this->batchInsert('user', ['id','email', 'password_hash'],
+        $this->batchInsert('users', ['id','email', 'password_hash'],
            [
                [1, 'email@mail.com', 1111],
                [2, 'email2@mail.com', 2222]
@@ -36,7 +36,7 @@ class m190301_212548_inserts extends Migration
      */
     public function safeDown()
     {
-        $this->delete('user');
+        $this->delete('users');
         $this->delete('activity');
     }
 

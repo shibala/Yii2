@@ -17,11 +17,42 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],
+        'api' => [
+            'basePath' => '@app/modules/api',
+            'class' => 'app\modules\api\Module',
+        ],
+    ],
+    'container' => [
+        'singletons' => [
+            'app\components\notification\NotificationInterface' => [
+                'class' => 'app\components\notification\NotificationService'
+            ]
+        ],
+        //переопределение классов
+        'definitions' => [
+            'app\entity\Activity' => [
+                'class' => '\app\models\Activity'
+            ]
+        ]
     ],
     'components' => [
+        'i18n' => [
+          'translations' => [
+              'app' => [
+                  'class' => 'yii\i18n\PhpMessageSource',
+                  'fileMap' => [
+                      'app' => 'app.php',
+                      'app/error' => 'error.php',
+                  ],
+              ],
+          ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'bcnv19tgguBu5dC9MzLQmEkpDmhAzoZ_',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
         ],
         'activity' => [
             'class' => \app\components\ActivityComponent::class,
@@ -32,15 +63,19 @@ $config = [
             'day_class' => 'app\models\Day'
         ],
         'dao' => \app\components\DaoComponent::class,
-        'auth' => \app\components\UserAuthComponent::class,
+        'auth' => [
+            'class' => '\app\components\UserAuthComponent',
+            'auth_class' => 'app\models\Users'
+            ],
         'authManager' => [
             'class' => yii\rbac\DbManager::class,
         ],
         'rbac' => \app\components\RbacComponent::class,
-        'cache' => [
-            'class' => 'yii\caching\MemCached',
+
+        /*'cache' => [
+            'class' => 'yii\caching\MemCache',
             'useMemcached' => true
-        ],
+        ],*/
         'user' => [
             'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
@@ -87,7 +122,16 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => false,
             'rules' => [
+                '/day/view' => '/activity-search/view',
+                '/day/update' => '/activity-search/update',
+                '/day/delete' => '/activity-search/delete',
+                [
+                    'class' => yii\rest\UrlRule::class,
+                    'controller' => ['api/activrest'],
+                    'pluralize' => false,
+                ],
             ],
         ]
 

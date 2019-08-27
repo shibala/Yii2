@@ -16,8 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -32,12 +32,42 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'description:ntext',
-            'date_start',
-            'date_end',
-            'user_notification',
-            'is_blocked',
-            'is_repeat',
-            'date_created',
+            [
+                'attribute' => 'date_start',
+                'value' => function($model){
+                    return Yii::$app->viewFormatter->asDate($model->date_start);
+                },
+            ],
+            [
+                'attribute' => 'date_end',
+                'value' => function($model){
+                    return Yii::$app->viewFormatter->asDate($model->date_start);
+                },
+            ],
+            [
+                'attribute' => 'user_notification',
+                'value' => function($model){
+                    return ($model->user_notification == 0) ? 'нет' : 'да';
+                },
+            ],
+            [
+                'attribute' => 'is_blocked',
+                'value' => function($model){
+                    return ($model->is_blocked == 0) ? 'нет' : 'да';
+                },
+            ],
+            [
+                'attribute' => 'is_repeat',
+                'value' => function($model){
+                    return ($model->is_repeat == 0) ? 'нет' : 'да';
+                },
+            ],
+            [
+                'attribute' => 'date_created',
+                'value' => function($model){
+                    return Yii::$app->viewFormatter->asDate($model->date_start);
+                },
+            ],
             'user_id',
         ],
     ]) ?>

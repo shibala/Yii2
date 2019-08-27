@@ -1,0 +1,20 @@
+.today > form > div > button {
+    color: red;
+}
+
+.dayTd {
+    position: relative;
+    width: 10%;
+}
+
+.dayCell {
+    height: 100%;
+    width: 100%;
+}
+
+.dayButton {
+    position: absolute;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+}

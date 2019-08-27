@@ -19,6 +19,7 @@ class ActivitySearch extends Activity
         return [
             [['id', 'user_notification', 'is_blocked', 'is_repeat', 'user_id'], 'integer'],
             [['title', 'description', 'date_start', 'date_end', 'date_created'], 'safe'],
+            [['user_id'], 'required'],
         ];
     }
 
@@ -46,6 +47,12 @@ class ActivitySearch extends Activity
 
         $query = Activity::find()->andFilterWhere($filter);
 
+        //для получения активностей авторизованного пользователя
+        if (!\Yii::$app->rbac->canViewEditAll())
+        {
+            $query = Activity::find()->andFilterWhere($filter)->andWhere(['user_id' => \Yii::$app->session['__id']]);
+        }
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -61,7 +68,7 @@ class ActivitySearch extends Activity
         }
 
 
-        //для получения активностей авторизованного пользователя
+
         $filterParams = [
             'id' => $this->id,
             'date_start' => $this->date_start,
@@ -70,12 +77,9 @@ class ActivitySearch extends Activity
             'is_blocked' => $this->is_blocked,
             'is_repeat' => $this->is_repeat,
             'date_created' => $this->date_created,
-            'user_id' => \Yii::$app->session['__id'],
+            'user_id' => $this->user_id
         ];
 
-        if (\Yii::$app->rbac->canViewEditAll()) {
-            $filterParams['user_id'] = $this->user_id;
-        }
 
 
 

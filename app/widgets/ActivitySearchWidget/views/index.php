@@ -26,7 +26,12 @@ $gridParams = [
                 return Yii::$app->viewFormatter->asDate($model->date_start);
             },
         ],
-        'date_end',
+        [
+            'attribute' => 'date_end',
+            'value' => function($model){
+                return Yii::$app->viewFormatter->asDate($model->date_end);
+            },
+        ],
     ],
 ];
 
@@ -41,7 +46,7 @@ if (\Yii::$app->rbac->canViewEditAll()) {
     ];
 }
 
-$gridParams['columns'][] = ['class' => 'app\widgets\ActivitySearchWidget\WidgetActionColumn'];
+$gridParams['columns'][] = ['class' => 'yii\grid\ActionColumn'];
 
 
 ?>

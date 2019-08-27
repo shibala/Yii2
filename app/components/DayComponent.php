@@ -6,6 +6,7 @@
 namespace app\components;
 
 use app\models\Day;
+use app\models\Users;
 use yii\base\Component;
 
 class DayComponent extends Component
@@ -20,11 +21,12 @@ class DayComponent extends Component
 
     public function getModel($params=null) {
 
-        $model = new $this -> day_class;
 
+        $model = \Yii::$container->get($this -> day_class);
         $model -> user_id  = \Yii::$app->session['__id'];
 
-        $user = new \app\models\Users();
+
+        $user = \Yii::$container->get(Users::class);
         $user -> id = $model -> user_id;
 
         if ($params && is_array($params)) {

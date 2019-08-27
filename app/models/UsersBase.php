@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "user".
+ * This is the model class for table "users".
  *
  * @property int $id
  * @property string $email
@@ -26,7 +26,7 @@ class UsersBase extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'user';
+        return 'users';
     }
 
 
