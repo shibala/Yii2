@@ -87,4 +87,19 @@ class ActivitySearch extends Activity
 
         return $dataProvider;
     }
+
+
+    /**
+     * Список событий на текущий день
+     * @return Activity[]|array|\yii\db\ActiveRecord[]
+     */
+    public function getActivitiesToday()
+    {
+        $activities = Activity::find()
+            ->andWhere('date_start >= :date', [':date' => date('Y-m-d')])
+            ->andWhere(['user_notification' => 1])
+            ->all();
+
+        return $activities;
+    }
 }

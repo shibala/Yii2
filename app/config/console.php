@@ -15,6 +15,35 @@ $config = [
         '@tests' => '@app/tests',
     ],
     'components' => [
+        'activity' => [
+            'class' => \app\components\ActivityComponent::class,
+            'activity_class' => '\app\models\Activity'
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'enableSwiftMailerLogging' => true,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.yandex.ru',
+                'username' => 'kirasirTest',
+                'password' => 'kirasir1914',
+                'port' => '587',
+                'encryption' => 'tls'
+            ]
+        ],
+        'viewFormatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'php: d.m.Y'
+        ],
+        'sqlFormatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'php: Y-m-d'
+        ],
+        'headersFormatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'php: j F Y'
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

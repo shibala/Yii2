@@ -20,6 +20,7 @@ use yii\widgets\ActiveForm;
         <li><label>Дата окончания</label>: <?= Html::encode($activity->date_end) ?></li>
         <li><label>Блокирующее</label>: <?= Html::encode($activity->is_blocked) ?></li>
         <li><label>Повторяющееся</label>: <?= Html::encode($activity->is_repeat) ?></li>
+        <li><label>Уведомление</label>: <?= Html::encode($activity->user_notification) ?></li>
         <li><label>Email</label>: <?= Html::encode($activity->email) ?></li>
         <li><label>Image</label>: <?= Html::encode($activity->image) ?></li>
         <li><img src="/images/<?= $activity->image ?>" </li>
@@ -41,6 +42,7 @@ use yii\widgets\ActiveForm;
 <?= $form->field($activity, 'date_end') -> label(false) -> hiddenInput(['value' => Html::encode($activity->date_end)]); ?>
 <?= $form->field($activity, 'is_blocked') -> label(false) -> hiddenInput(['value' => Html::encode($activity->is_blocked)]); ?>
 <?= $form->field($activity, 'is_repeat') -> label(false) -> hiddenInput(['value' => Html::encode($activity->is_repeat)]); ?>
+<?= $form->field($activity, 'user_notification') -> label(false) -> hiddenInput(['value' => Html::encode($activity->user_notification)]); ?>
 <?= $form->field($activity, 'email') -> label(false) -> hiddenInput(['value' => Html::encode($activity->email)]); ?>
 
 <div class="form-group">

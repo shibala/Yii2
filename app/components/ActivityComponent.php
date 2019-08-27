@@ -72,5 +72,19 @@ class ActivityComponent extends Component
         return $this->getModel()::find()->andWhere(['id' => $id])->one();
     }
 
+    /**
+     * Список событий на текущий день
+     * @return Activity[]|array|\yii\db\ActiveRecord[]
+     */
+    /*public function getActivitiesToday()
+    {
+        $activities = Activity::find()
+            ->andWhere('date_start >= :date', [':date' => date('Y-m-d')])
+            ->andWhere(['user_notification' => 1])
+            ->all();
+
+        return $activities;
+    }*/
+
 
 }

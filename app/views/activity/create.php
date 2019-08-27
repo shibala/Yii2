@@ -34,6 +34,7 @@
         <?= $form->field($activity, 'date_end'); ?>
         <?= $form->field($activity, 'is_blocked') -> checkbox(); ?>
         <?= $form->field($activity, 'is_repeat') -> checkbox(); ?>
+        <?= $form->field($activity, 'user_notification') -> checkbox(); ?>
         <?= $form->field($activity, 'email'); ?>
         <?= $form->field($activity, 'image') -> fileInput();?>
 
