@@ -18,7 +18,9 @@ class ActivityComponent extends Component
     /**@return Activity*/
 
     public function getModel($params=null) {
-        $model = new $this -> activity_class;
+        //$model = new $this -> activity_class;
+
+        $model = \Yii::$container->get($this->activity_class);
 
 
 
@@ -51,13 +53,6 @@ class ActivityComponent extends Component
                 $model->image=$name;
 
             }
-
-            if ($model->confirmed) {
-                $model->save();
-            }
-
-
-
 
             return true;
         }

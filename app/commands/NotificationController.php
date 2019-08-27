@@ -10,6 +10,7 @@ use app\components\NotificationComponent;
 use app\models\ActivitySearch;
 use yii\helpers\Console;
 use yii\console\Controller;
+use yii\mail\MailerInterface;
 
 class NotificationController extends Controller
 {
@@ -45,7 +46,16 @@ class NotificationController extends Controller
 
 
         /** @var NotificationComponent $notif_comp */
-        $notif_comp=\Yii::createObject(['class'=>NotificationComponent::class, 'mailer'=>\Yii::$app->mailer]);
+        //$notif_comp=\Yii::createObject(['class'=>NotificationComponent::class, 'mailer'=>\Yii::$app->mailer]);
+
+        //обращение через интерфейс
+        \Yii::$container->set(MailerInterface::class, function(){
+            return \Yii::$app->mailer;
+        });
+        $notif_comp=\Yii::$container->get('notification');
+        /*print_r($notif_comp);
+        exit;*/
+
 
         foreach ($notif_comp->sendTodayNotification($activities) as $result) {
             if ($result['result']){

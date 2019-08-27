@@ -14,6 +14,14 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
     ],
+    'container' => [
+        'singletons' => [
+            'app\components\notification\NotificationInterface' => [
+                'class' => 'app\components\notification\NotificationService'
+            ],
+            'notification' =>  ['class' => 'app\components\notification\NotificationInterface'],
+        ]
+    ],
     'components' => [
         'activity' => [
             'class' => \app\components\ActivityComponent::class,

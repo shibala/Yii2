@@ -13,7 +13,7 @@ class m190301_210252_FK extends Migration
     public function safeUp()
     {
         $this->addColumn('activity', 'user_id', $this->integer()->notNull());
-        $this->addForeignKey('user_activity_FK', 'activity', 'user_id', 'user', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('user_activity_FK', 'activity', 'user_id', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->createIndex('email_ind', 'user', 'email', true);
     }
 

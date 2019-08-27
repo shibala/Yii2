@@ -43,8 +43,6 @@ class ActivityBase extends \yii\db\ActiveRecord
             [['date_start', 'date_end', 'date_created'], 'safe'],
             [['user_notification', 'is_blocked', 'is_repeat', 'user_id'], 'integer'],
             [['title'], 'string', 'max' => 150],
-            //Спросить про class() !
-            //[['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::class(), 'targetAttribute' => ['user_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }

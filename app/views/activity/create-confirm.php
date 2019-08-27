@@ -7,11 +7,10 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 
-//var_dump($activity -> validate());
 ?>
 
 <dev class="row">
-    <p>Вы ввели следующую информацию</p>
+    <p><?= Yii::t('app', 'You have inserted following information') ?></p>
     <ul>
         <li><label>ID</label>: <?= Html::encode($activity->user_id) ?></li>
         <li><label>Заголовок</label>: <?= Html::encode($activity->title) ?></li>
@@ -23,17 +22,19 @@ use yii\widgets\ActiveForm;
         <li><label>Уведомление</label>: <?= Html::encode($activity->user_notification) ?></li>
         <li><label>Email</label>: <?= Html::encode($activity->email) ?></li>
         <li><label>Image</label>: <?= Html::encode($activity->image) ?></li>
-        <li><img src="/images/<?= $activity->image ?>" </li>
+        <?php
+        if ($activity->image) {
+            echo '<li><img src="/images/'.$activity->image.'" </li>';
+        }
+        ?>
+
     </ul>
 </dev>
 
 <?php $form=ActiveForm::begin([
-    'action' => '/activity/edit',
+    'action' => '/activity/create',
     'method' => 'POST',
     'id' => 'activity',
-/*    'options' => [
-        'enctype' => ''
-    ]*/
 ]); ?>
 
 <?= $form->field($activity, 'title') -> label(false) -> hiddenInput(['value' => Html::encode($activity->title)]); ?>
@@ -55,9 +56,6 @@ use yii\widgets\ActiveForm;
     'action' => '/activity/confirm',
     'method' => 'POST',
     'id' => 'activity',
-    /*    'options' => [
-            'enctype' => ''
-        ]*/
 ]); ?>
 
 <?= $form->field($activity, 'title') -> label(false) -> hiddenInput(['value' => Html::encode($activity->title)]); ?>

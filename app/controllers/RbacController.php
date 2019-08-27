@@ -6,9 +6,10 @@
 namespace app\controllers;
 
 
-use yii\web\Controller;
+use app\base\BaseController;
+//use yii\web\Controller;
 
-class RbacController extends Controller
+class RbacController extends BaseController
 {
     public function actionGen() {
         \Yii::$app->rbac->generateRbacRules();

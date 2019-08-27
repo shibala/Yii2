@@ -16,7 +16,8 @@ class ActivitySearchWidget extends Widget
     public function run()
     {
 
-        $searchModel = new ActivitySearch();
+        $searchModel = \Yii::$container->get(ActivitySearch::class);
+
 
         $dataProvider = $searchModel->search([], ['date_start' => $this->date_start]);
 

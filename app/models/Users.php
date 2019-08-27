@@ -24,6 +24,9 @@ class Users extends UsersBase implements IdentityInterface
     public $password;
     public $password_repeat;
 
+    public $new_password;
+    public $new_password_repeat;
+
     const SCENARIO_SIGNIN = 'signIn_sc';
 
     public function rules()
@@ -31,6 +34,10 @@ class Users extends UsersBase implements IdentityInterface
         return array_merge([
             ['password', 'string', 'min' => 4],
             ['password_repeat', 'compare', 'compareAttribute' => 'password'],
+
+            ['new_password', 'string', 'min' => 4],
+            ['new_password_repeat', 'compare', 'compareAttribute' => 'new_password'],
+
             ['email', 'exist', 'on' => self::SCENARIO_SIGNIN]
         ],
             parent::rules());
@@ -45,7 +52,7 @@ class Users extends UsersBase implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return Users::find()->cache(null, new TagDependency(['tags' => 'user_tag']))->andWhere(['id' => $id])->one();
+        return Users::find()/*->cache(null, new TagDependency(['tags' => 'user_tag']))*/->andWhere(['id' => $id])->one();
     }
 
     /**
@@ -59,7 +66,7 @@ class Users extends UsersBase implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        // TODO: Implement findIdentityByAccessToken() method.
+        return Users::find()->andWhere(['token' => $token])->one();
     }
 
     /**

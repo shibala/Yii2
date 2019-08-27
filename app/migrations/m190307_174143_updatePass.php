@@ -13,8 +13,8 @@ class m190307_174143_updatePass extends Migration
     public function safeUp()
     {
 
-        $this->update('user', ['password_hash' => \Yii::$app->security->generatePasswordHash(1111)], 'id = 1');
-        $this->update('user', ['password_hash' => \Yii::$app->security->generatePasswordHash(2222)], 'id = 2');
+        $this->update('users', ['password_hash' => \Yii::$app->security->generatePasswordHash(1111)], 'id = 1');
+        $this->update('users', ['password_hash' => \Yii::$app->security->generatePasswordHash(2222)], 'id = 2');
 
     }
 
@@ -25,8 +25,8 @@ class m190307_174143_updatePass extends Migration
     {
 
 
-        $this->update('user', ['password_hash' => 1111], 'id = 1');
-        $this->update('user', ['password_hash' => 2222], 'id = 2');
+        $this->update('users', ['password_hash' => 1111], 'id = 1');
+        $this->update('users', ['password_hash' => 2222], 'id = 2');
 
 
     }
